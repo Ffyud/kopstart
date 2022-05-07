@@ -1,23 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+
+const getLocation = () => {
+  if (!navigator.geolocation) {
+    console.log('Geolocation API not supported by this browser.');
+  } else {
+    console.log('Checking location...');
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
+}
+
+const success = (position) => {
+  console.log(position)
+  // returns GeolocationPosition object
+
+  console.log('Latitude:', position.coords.latitude);
+  console.log('Longitude:', position.coords.longitude);
+}
+
+const error = () => {
+  console.log("Error ja")
+}
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="app-wrap">
+        <header>KOPSTART</header>
+        
+        <button onClick={getLocation}>get my location</button>
+
+      </div>
     </div>
   );
 }
